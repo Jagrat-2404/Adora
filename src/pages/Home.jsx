@@ -1,51 +1,11 @@
 import { Link } from 'react-router-dom'
-
+import ImpactStats from '../components/ImpactStats'
+import '../hero.css'
+import '../hero-refinements.css'
 function Home() {
-  return (
-    <div>
-      {/* Hero Section */}
-      <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-background to-card px-4">
-        <div className="text-center max-w-3xl">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 text-primary">Welcome to Adora</h1>
-          <p className="text-xl md:text-2xl text-muted-foreground mb-8">Create stunning digital experiences with modern design and technology</p>
-          <div className="flex gap-4 justify-center flex-wrap">
-            <Link
-              to="/services"
-              className="bg-primary text-primary-foreground px-8 py-3 rounded-lg font-semibold hover:opacity-90 transition"
-            >
-              Explore Services
-            </Link>
-            <Link
-              to="/contact"
-              className="border-2 border-primary text-primary px-8 py-3 rounded-lg font-semibold hover:bg-primary hover:text-primary-foreground transition"
-            >
-              Get in Touch
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Features Section */}
-      <section className="py-16 px-4 bg-card border-t border-border">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl font-bold mb-12 text-center text-foreground">Why Choose Adora?</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              { icon: '🎯', title: 'Focused Solutions', desc: 'Tailored to your specific needs' },
-              { icon: '⚡', title: 'Fast & Efficient', desc: 'Lightning-quick performance' },
-              { icon: '🔒', title: 'Secure & Reliable', desc: 'Enterprise-grade security' },
-            ].map((feature, idx) => (
-              <div key={idx} className="bg-background p-8 rounded-lg border border-border hover:shadow-lg transition hover:border-accent/50">
-                <div className="text-4xl mb-4">{feature.icon}</div>
-                <h3 className="text-xl font-semibold mb-3 text-primary">{feature.title}</h3>
-                <p className="text-muted-foreground">{feature.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-    </div>
-  )
+  return <><section className="adora-hero"><div className="adora-shell adora-hero-grid"><div className="adora-hero-copy"><p className="adora-kicker"><i /> Digital growth partner · Ahmedabad & beyond</p><h1>Make your next<br />good idea<br />easier to find.</h1><div className="adora-swoosh" /><p className="adora-intro">We help startups and local businesses show up, look sharp, and bring in more of the right customers online.</p><div className="adora-actions"><Link className="adora-button" to="/contact">Tell us what you’re building <span>→</span></Link><Link className="adora-text-link" to="/services">See the packages <span>→</span></Link></div><div className="adora-proof"><div className="adora-avatars"><b>FS</b><b>JB</b><b>UB</b><b>+30</b></div><p>30+ businesses backed since we launched in 2025.</p></div></div><div className="adora-hero-art" aria-label="Adora growth dashboard"><div className="dashboard-orbit orbit-one" /><div className="dashboard-orbit orbit-two" /><div className="dashboard-shadow" /><div className="dashboard-card"><div className="dashboard-top"><small>ADORA / OVERVIEW</small><span>● Live</span></div><h2>Ideas, in motion.</h2><div className="dashboard-rule" /><div className="dashboard-stat-row"><div><small>People reached</small><strong>18,420</strong><em>↑ 24.8%<br />this month</em></div><div><small>Enquiries</small><strong>184</strong><em>↑ 31.4%<br />this month</em></div></div><div className="dashboard-chart"><div><small>Visibility, week by week</small><strong>+47.2%</strong></div><button>Last 30 days⌄</button><svg viewBox="0 0 420 120" aria-hidden="true"><defs><linearGradient id="chartFill" x1="0" x2="0" y1="0" y2="1"><stop stopColor="#8fae67" stopOpacity=".38"/><stop offset="1" stopColor="#8fae67" stopOpacity="0"/></linearGradient></defs><path d="M0 92 C28 85 40 100 65 87 S100 100 125 77 S150 87 180 65 S207 79 235 56 S263 69 290 42 S320 53 345 24 S385 30 420 10 V120 H0Z" fill="url(#chartFill)" /><path d="M0 92 C28 85 40 100 65 87 S100 100 125 77 S150 87 180 65 S207 79 235 56 S263 69 290 42 S320 53 345 24 S385 30 420 10" fill="none" stroke="#315a19" strokeWidth="3" /></svg><div className="chart-key"><span>● Social content</span><span>● Meta Ads</span></div></div><div className="dashboard-report">View report&nbsp; →</div></div><div className="floating-label momentum-label"><span>✳</span> Made for momentum</div><div className="floating-label next-label"><span>✓</span> Clear next step</div></div></div></section>
+  <section className="adora-section adora-about"><div className="adora-shell adora-about-grid"><p className="adora-kicker"><i /> A little about us</p><div><h2>Big-agency thinking.<br /><em>Human-sized</em> energy.</h2><p className="adora-body-copy">Adora Solution is a small, focused digital studio for people building something worth paying attention to. We bring strategy, design and execution together — without the theatre.</p><Link className="adora-text-link" to="/about">Meet Adora <span>↗</span></Link></div><aside className="adora-manifesto"><span>Our approach</span><strong>Listen closely.<br />Make it clear.<br />Keep it moving.</strong></aside></div></section>
+  <ImpactStats />
+  <section className="adora-section adora-green-cta"><div className="adora-shell"><p className="adora-kicker"><i /> A good next step</p><h2>Less mystery.<br /><em>More movement.</em></h2><p>Start with a real conversation. We’ll help you find the clearest way forward.</p><Link className="adora-button peach-button" to="/process">How we work <span>↗</span></Link></div></section></>
 }
-
 export default Home

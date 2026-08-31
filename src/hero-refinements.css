@@ -1,0 +1,62 @@
+/* Preserve the full dashboard composition inside the hero viewport. */
+.adora-hero {
+  min-height: 730px;
+}
+
+.adora-hero-art {
+  min-height: 535px;
+  overflow: visible;
+}
+
+.dashboard-shadow {
+  inset: 64px 18px 12px 25px;
+}
+
+.dashboard-card {
+  inset: 12px 15px 14px 0;
+  padding: 24px 29px 20px;
+}
+
+.dashboard-stat-row > div {
+  min-height: 108px;
+}
+
+.dashboard-chart {
+  min-height: 190px;
+}
+
+/* Keep the impact figures independent of the dashboard typography. */
+.adora-impact .adora-stats strong {
+  margin: 0;
+  color: var(--ink);
+  font: 600 clamp(38px, 4vw, 60px)/1 'Space Grotesk', sans-serif;
+  letter-spacing: -.09em;
+}
+
+.adora-impact .adora-stats span {
+  color: var(--muted);
+  font: 11px/1.45 'DM Sans', sans-serif;
+}
+
+@media (max-width: 760px) {
+  .adora-hero {
+    min-height: auto;
+  }
+
+  .adora-hero-art {
+    min-height: 390px;
+  }
+
+  .dashboard-card {
+    inset: 16px 9px 18px 2px;
+    padding: 17px;
+  }
+
+  .dashboard-stat-row > div {
+    min-height: 88px;
+  }
+
+  .dashboard-chart {
+    min-height: 150px;
+  }
+}
