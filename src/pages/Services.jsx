@@ -35,22 +35,22 @@ function Services() {
   return (
     <div>
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary to-secondary py-16 px-4">
+      <section className="bg-gradient-to-br from-background to-card py-16 px-4 border-b border-border">
         <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-5xl font-bold mb-6 text-accent">Our Services</h1>
-          <p className="text-xl text-gray-300">Comprehensive solutions for all your digital needs</p>
+          <h1 className="text-5xl font-bold mb-6 text-primary">Our Services</h1>
+          <p className="text-xl text-muted-foreground">Comprehensive solutions for all your digital needs</p>
         </div>
       </section>
 
       {/* Services Grid */}
-      <section className="py-16 px-4">
+      <section className="py-16 px-4 bg-background">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, idx) => (
-              <div key={idx} className="bg-secondary p-8 rounded-lg hover:shadow-xl hover:border-accent border border-transparent transition">
+              <div key={idx} className="bg-card p-8 rounded-lg hover:shadow-xl hover:border-accent/50 border border-border transition">
                 <div className="text-5xl mb-4">{service.icon}</div>
-                <h3 className="text-xl font-semibold mb-3 text-accent">{service.title}</h3>
-                <p className="text-gray-300">{service.desc}</p>
+                <h3 className="text-xl font-semibold mb-3 text-primary">{service.title}</h3>
+                <p className="text-muted-foreground">{service.desc}</p>
               </div>
             ))}
           </div>
