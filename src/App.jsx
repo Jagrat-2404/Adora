@@ -1,30 +1,42 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Navigation from './components/Navigation'
-import Footer from './components/Footer'
-import Home from './pages/Home'
-import About from './pages/About'
-import Services from './pages/Services'
-import Portfolio from './pages/Portfolio'
-import Contact from './pages/Contact'
+import { useState } from 'react'
+
+const services = [
+  { number: '01', name: 'Social media', title: 'Make your brand part of the conversation.', text: 'Content, strategy and a visual presence that gives people a reason to stop, follow and remember you.', deliverables: ['Monthly content direction', 'Designs & short-form video', 'Clear reporting'], price: 'From ₹15k / month' },
+  { number: '02', name: 'Meta Ads', title: 'Turn attention into measurable action.', text: 'Smart campaigns with thoughtful creative, useful audiences and a practical focus on leads and sales.', deliverables: ['Campaign strategy', 'Creative testing', 'Weekly optimisation'], price: 'From ₹12k / month' },
+  { number: '03', name: 'Web design', title: 'A website that feels like your best first impression.', text: 'Fast, considered websites that make your offer simple to understand and easy to act on.', deliverables: ['UX & visual design', 'Responsive development', 'Launch support'], price: 'From ₹35k' },
+  { number: '04', name: 'Custom apps', title: 'Useful digital tools, built around your business.', text: 'From a focused internal workflow to a customer-facing product, we build the practical thing you need.', deliverables: ['Product discovery', 'Custom development', 'Ongoing support'], price: 'Let’s scope it' },
+]
+const plans = [
+  { name: 'Seed', mark: 'S', price: '₹15k', note: 'For a clear, confident place to begin.', items: ['One focused service', 'Monthly planning', 'Friendly, direct support'] },
+  { name: 'Grow', mark: 'G', price: '₹35k', note: 'For businesses ready to connect the dots.', items: ['Two core services', 'Strategy and execution', 'Monthly growth review'], featured: true },
+  { name: 'Build', mark: 'B', price: 'Custom', note: 'For a bigger brief or something entirely new.', items: ['Tailored project team', 'Flexible scope', 'A plan for what comes next'] },
+]
+function Arrow() { return <span aria-hidden="true">↗</span> }
 
 function App() {
-  return (
-    <Router>
-      <div className="flex flex-col min-h-screen bg-background text-foreground">
-        <Navigation />
-        <main className="flex-1">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/portfolio" element={<Portfolio />} />
-            <Route path="/contact" element={<Contact />} />
-          </Routes>
-        </main>
-        <Footer />
-      </div>
-    </Router>
-  )
-}
+  const [menuOpen, setMenuOpen] = useState(false)
+  const [activeService, setActiveService] = useState(0)
+  const [submitted, setSubmitted] = useState(false)
+  const service = services[activeService]
+  const submit = (event) => { event.preventDefault(); setSubmitted(true); event.currentTarget.reset() }
+  const closeMenu = () => setMenuOpen(false)
 
+  return <div className="adora-page">
+    <header className="adora-header"><nav className="adora-shell adora-nav" aria-label="Main navigation">
+      <a className="adora-logo" href="#top" onClick={closeMenu}>Adora<span>Solution</span></a>
+      <button className="adora-menu" type="button" onClick={() => setMenuOpen(!menuOpen)} aria-expanded={menuOpen} aria-label="Toggle menu">{menuOpen ? '×' : '☰'}</button>
+      <div className={`adora-links ${menuOpen ? 'is-open' : ''}`}>{['Services', 'Pricing', 'Why Adora', 'How we work'].map((item) => <a key={item} href={`#${item.toLowerCase().replaceAll(' ', '-')}`} onClick={closeMenu}>{item}</a>)}<a className="adora-nav-cta" href="#contact" onClick={closeMenu}>Start a conversation <Arrow /></a></div>
+    </nav></header>
+    <main>
+      <section id="top" className="adora-hero"><div className="adora-shell adora-hero-grid"><div className="adora-hero-copy"><p className="adora-kicker"><i /> Digital growth partner · Ahmedabad & beyond</p><h1>Make your next good idea <em>matter.</em></h1><p className="adora-intro">We help startups and growing businesses find clarity, show up beautifully, and move forward with confidence.</p><div className="adora-actions"><a className="adora-button" href="#contact">Tell us what’s next <Arrow /></a><a className="adora-text-link" href="#services">See what we do <span>↓</span></a></div><div className="adora-proof"><div className="adora-avatars"><b>A</b><b>R</b><b>V</b><b>+</b></div><p>Practical people, working on<br />practical progress.</p></div></div><div className="adora-hero-art" aria-label="Abstract digital growth illustration"><div className="adora-sun" /><div className="adora-arch" /><div className="adora-plant"><i /><i /><i /><i /></div><div className="adora-note note-one">small steps<br /><strong>add up</strong></div><div className="adora-note note-two">good ideas<br />need momentum <b>↗</b></div><div className="adora-stamp">A<br /><span>since<br />2025</span></div></div></div><div className="adora-ticker"><span>strategy</span><i /> <span>design</span><i /> <span>growth</span><i /> <span>momentum</span><i /> <span>strategy</span><i /> <span>design</span></div></section>
+      <section id="why-adora" className="adora-section adora-about"><div className="adora-shell adora-about-grid"><p className="adora-kicker"><i /> A little about us</p><div><h2>Big-agency thinking.<br /><em>Human-sized</em> energy.</h2><p className="adora-body-copy">Adora Solution is a small, focused digital studio for people building something worth paying attention to. We bring strategy, design and execution together — without the theatre.</p><a className="adora-text-link" href="#how-we-work">How we work <Arrow /></a></div><aside className="adora-manifesto"><span>Our approach</span><strong>Listen closely.<br />Make it clear.<br />Keep it moving.</strong></aside></div></section>
+      <section id="services" className="adora-section adora-services"><div className="adora-shell"><div className="adora-section-heading"><p className="adora-kicker"><i /> What we do</p><h2>Useful things, made<br /><em>with care.</em></h2><p>Pick the place where you need momentum. We will build the right next step together.</p></div><div className="adora-service-tabs" role="tablist">{services.map((item, index) => <button key={item.name} className={activeService === index ? 'active' : ''} onClick={() => setActiveService(index)} role="tab" aria-selected={activeService === index}><small>{item.number}</small>{item.name}</button>)}</div><article className="adora-service-card"><div className="adora-service-icon">{['✳', '◉', '⌘', '↗'][activeService]}</div><div><p className="adora-service-index">{service.number} / {service.name}</p><h3>{service.title}</h3><p>{service.text}</p><ul>{service.deliverables.map((item) => <li key={item}>✓ {item}</li>)}</ul></div><div className="adora-service-price"><span>Starting at</span><strong>{service.price}</strong><a href="#contact">Ask about this <Arrow /></a></div></article></div></section>
+      <section id="how-we-work" className="adora-section adora-process"><div className="adora-shell"><p className="adora-kicker"><i /> The process</p><div className="adora-process-heading"><h2>Less mystery.<br /><em>More movement.</em></h2><p>A straightforward way of getting good work into the world.</p></div><div className="adora-steps">{[['01', 'Start with a real conversation', 'Tell us what is changing, what is stuck, and where you want to go.'], ['02', 'Find the clearest next step', 'We shape a focused plan with the work, timing and investment out in the open.'], ['03', 'Make it happen together', 'We work in the open, share progress often and keep the useful things moving.']].map(([n, title, text]) => <article key={n}><span>{n}</span><h3>{title}</h3><p>{text}</p><b>→</b></article>)}</div></div></section>
+      <section id="pricing" className="adora-section adora-pricing"><div className="adora-shell"><div className="adora-pricing-heading"><div><p className="adora-kicker"><i /> Starting points</p><h2>Good work has<br /><em>a beginning.</em></h2></div><p>These are flexible starting ranges, not a menu set in stone. We will make a plan that fits the job.</p></div><div className="adora-pricing-grid">{plans.map((plan) => <article key={plan.name} className={`adora-plan ${plan.featured ? 'featured' : ''}`}>{plan.featured && <span className="adora-badge">Most popular</span>}<div className="adora-plan-top"><span>{plan.name}</span><b>{plan.mark}</b></div><h3>{plan.name}</h3><p>{plan.note}</p><div className="adora-plan-price"><strong>{plan.price}</strong><span>{plan.price === 'Custom' ? 'for your brief' : 'starting range'}</span></div><ul>{plan.items.map((item) => <li key={item}>✓ {item}</li>)}</ul><a href="#contact">Start here <Arrow /></a></article>)}</div></div></section>
+      <section id="contact" className="adora-section adora-contact"><div className="adora-shell adora-contact-grid"><div><p className="adora-kicker"><i /> Say hello</p><h2>Ready when<br /><em>you are.</em></h2><p>Have a project, an idea, or a feeling that something could be working better? Tell us a little about it.</p><div className="adora-contact-details"><a href="mailto:info@adorasolution.in">info@adorasolution.in</a><a href="tel:+919824900460">+91 98249 00460</a></div></div><form className="adora-form" onSubmit={submit}>{submitted && <p className="adora-success">Thank you — we’ll be in touch soon.</p>}<label>Your name<input required name="name" placeholder="What should we call you?" /></label><label>Email address<input required type="email" name="email" placeholder="you@example.com" /></label><label>What’s on your mind?<textarea required name="message" rows="4" placeholder="A new website, more leads, a better way to show up…" /></label><button className="adora-button" type="submit">Send your note <Arrow /></button></form></div></section>
+      <section className="adora-faq"><div className="adora-shell"><p className="adora-kicker"><i /> A few questions</p><h2>Good to know.</h2>{[['Who do you usually work with?', 'Startups and local businesses that want practical progress without a large-agency process.'], ['Can I start with only one service?', 'Absolutely. Start where the clearest difference can be made, then add more only when it is useful.'], ['What happens after I send an enquiry?', 'We will reply with a few thoughtful questions and, if there is a fit, suggest a short call and a simple next step.']].map(([q, a]) => <details key={q}><summary>{q}<span>+</span></summary><p>{a}</p></details>)}</div></section>
+    </main>
+    <footer className="adora-footer"><div className="adora-shell"><div><a className="adora-logo" href="#top">Adora<span>Solution</span></a><p>A practical digital growth partner for startups and local businesses.</p></div><div className="adora-footer-links"><div><strong>Explore</strong><a href="#services">Services</a><a href="#pricing">Pricing</a><a href="#how-we-work">How we work</a></div><div><strong>Contact</strong><a href="mailto:info@adorasolution.in">Email us</a><a href="tel:+919824900460">Call us</a><a href="#contact">Send an enquiry</a></div></div></div><div className="adora-shell adora-footer-bottom"><span>© 2025 Adora Solution. Built for the next good step.</span><span>● Replies from a real person, not a bot.</span></div></footer>
+  </div>
+}
 export default App
