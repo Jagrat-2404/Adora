@@ -1,63 +1,11 @@
-function Services() {
-  const services = [
-    {
-      icon: '🎨',
-      title: 'UI/UX Design',
-      desc: 'Beautiful and intuitive designs that users love'
-    },
-    {
-      icon: '💻',
-      title: 'Web Development',
-      desc: 'Modern, responsive websites built with latest technologies'
-    },
-    {
-      icon: '📱',
-      title: 'Mobile Apps',
-      desc: 'Native and cross-platform mobile applications'
-    },
-    {
-      icon: '⚙️',
-      title: 'Backend Development',
-      desc: 'Robust server-side solutions and APIs'
-    },
-    {
-      icon: '🔍',
-      title: 'SEO Optimization',
-      desc: 'Improve your online visibility and search rankings'
-    },
-    {
-      icon: '📊',
-      title: 'Analytics & Insights',
-      desc: 'Data-driven strategies for better results'
-    },
-  ]
-
-  return (
-    <div>
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary to-secondary py-16 px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-5xl font-bold mb-6 text-accent">Our Services</h1>
-          <p className="text-xl text-gray-300">Comprehensive solutions for all your digital needs</p>
-        </div>
-      </section>
-
-      {/* Services Grid */}
-      <section className="py-16 px-4">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service, idx) => (
-              <div key={idx} className="bg-secondary p-8 rounded-lg hover:shadow-xl hover:border-accent border border-transparent transition">
-                <div className="text-5xl mb-4">{service.icon}</div>
-                <h3 className="text-xl font-semibold mb-3 text-accent">{service.title}</h3>
-                <p className="text-gray-300">{service.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-    </div>
-  )
-}
-
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
+const services = [
+  { no:'01', name:'Social media', icon:'✳', title:'Make your brand part of the conversation.', copy:'Content, strategy and a visual presence that gives people a reason to stop, follow and remember you.', points:['Monthly content direction','Designs & short-form video','Clear reporting'] },
+  { no:'02', name:'Meta Ads', icon:'◉', title:'Turn attention into measurable action.', copy:'Smart campaigns with thoughtful creative, useful audiences and a practical focus on leads and sales.', points:['Campaign strategy','Creative testing','Weekly optimisation'] },
+  { no:'03', name:'Web design', icon:'⌘', title:'A website that feels like your best first impression.', copy:'Fast, considered websites that make your offer simple to understand and easy to act on.', points:['UX & visual design','Responsive development','Launch support'] },
+  { no:'04', name:'Custom apps', icon:'↗', title:'Useful digital tools, built around your business.', copy:'From focused internal workflows to customer-facing products, we build the practical thing you need.', points:['Product discovery','Custom development','Ongoing support'] },
+]
+function Services() { const [active, setActive] = useState(0); const service = services[active]
+ return <><section className="adora-page-hero"><div className="adora-shell"><p className="adora-kicker"><i /> What we do</p><h1>Useful things,<br /><em>made with care.</em></h1><p>Pick the place where you need momentum. We’ll build the right next step together.</p></div></section><section className="adora-section adora-services"><div className="adora-shell"><div className="adora-service-tabs" role="tablist">{services.map((item,index)=><button key={item.name} className={active===index?'active':''} onClick={()=>setActive(index)}><small>{item.no}</small>{item.name}</button>)}</div><article className="adora-service-card"><div className="adora-service-icon">{service.icon}</div><div><p className="adora-service-index">{service.no} / {service.name}</p><h2>{service.title}</h2><p>{service.copy}</p><ul>{service.points.map(point=><li key={point}>✓ {point}</li>)}</ul></div><Link className="adora-text-link service-link" to="/contact">Let’s talk <span>↗</span></Link></article></div></section><section className="adora-section"><div className="adora-shell service-note"><p className="adora-kicker"><i /> Not sure where to begin?</p><h2>We’ll help you<br /><em>make it clear.</em></h2><Link className="adora-button" to="/contact">Start a conversation <span>↗</span></Link></div></section></> }
 export default Services

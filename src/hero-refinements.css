@@ -1,0 +1,153 @@
+/* Preserve the full dashboard composition inside the hero viewport. */
+.adora-hero {
+  min-height: auto;
+  overflow: visible !important;
+}
+
+.adora-hero-art {
+  min-height: auto;
+  position: relative;
+  overflow: visible !important;
+  perspective: 1000px;
+}
+
+/* Main tilted card container */
+.dashboard-card {
+  position: relative !important;
+  inset: auto !important; /* Clears top/bottom/left/right anchors causing clipping */
+  width: 100%;
+  max-width: 580px;
+  margin: 40px auto;
+  padding: 32px 32px 24px !important;
+  background: #fbfbf9;
+  border-radius: 28px;
+  transform: rotate(3.5deg); /* Matches exact tilt of image 1 */
+  box-shadow: 0 24px 48px -12px rgba(45, 55, 40, 0.12);
+  overflow: visible !important;
+}
+
+/* Top two metric boxes */
+.dashboard-stat-row {
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 16px !important;
+  margin-bottom: 20px !important;
+}
+
+.dashboard-stat-row > div {
+  min-height: 124px !important;
+  height: auto !important;
+  border-radius: 20px;
+  padding: 16px 20px;
+}
+
+/* Chart block container - unclamp height */
+.dashboard-chart {
+  min-height: 280px !important; /* Gives room for chart line + dates + bottom row */
+  height: auto !important;
+  border-radius: 20px;
+  border: 1px solid #e7ebe4;
+  padding: 20px 20px;
+  display:flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+}
+
+/* Ensure chart SVG / canvas doesn't overflow or push down footer */
+.dashboard-chart svg,
+.dashboard-chart canvas {
+  width: 100% !important;
+  height: 120px !important;
+  overflow: visible;
+}
+
+/* Floating pill badges */
+.badge-momentum {
+  position: absolute !important;
+  top: 50px;
+  left: -20px;
+  transform: rotate(-6deg);
+  z-index: 20;
+}
+
+.badge-next-step {
+  position: absolute !important;
+  bottom: 60px; /* Anchored relative to the full card height */
+  right: -16px;
+  transform: rotate(-3deg);
+  z-index: 20;
+}
+
+/* Keep the impact figures independent of the dashboard typography. */
+.adora-impact .adora-stats strong {
+  margin: 0;
+  color: var(--ink);
+  font: 600 clamp(38px, 4vw, 60px)/1 'Space Grotesk', sans-serif;
+  letter-spacing: -.09em;
+}
+
+.adora-impact .adora-stats span {
+  color: var(--muted);
+  font: 11px/1.45 'DM Sans', sans-serif;
+}
+
+.adora-impact .adora-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border: 0;
+}
+
+.adora-impact {
+  margin-bottom: 56px;
+}
+
+.adora-impact .adora-stats article {
+  min-width: 0;
+  padding: 8px 30px;
+  border: 0;
+  border-right: 1px solid #dfe2dc;
+}
+
+.adora-impact .adora-stats article:first-child {
+  padding-left: 0;
+}
+
+.adora-impact .adora-stats article:last-child {
+  border-right: 0;
+}
+
+@media (max-width: 760px) {
+  .adora-hero {
+    min-height: auto;
+  }
+
+  .adora-hero-art {
+    min-height: 390px;
+  }
+
+  .dashboard-card {
+    inset: 16px 9px 18px 2px;
+    padding: 17px;
+  }
+
+  .dashboard-stat-row > div {
+    min-height: 88px;
+  }
+
+  .dashboard-chart {
+    min-height: 150px;
+  }
+
+  .adora-impact .adora-stats {
+    grid-template-columns: repeat(4, minmax(120px, 1fr));
+    overflow-x: auto;
+  }
+
+  .adora-impact {
+    margin-bottom: 36px;
+  }
+
+  .adora-impact .adora-stats article {
+    padding: 8px 18px;
+  }
+}
